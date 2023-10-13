@@ -278,6 +278,9 @@ z-index: 1;
 #projects .row #uni{
     margin-bottom:1.5rem ;
 }
+#projects .row #calc{
+    margin-bottom:4rem ;
+}
 #projects .row .item .item-content{
     padding: 20px 15px 30px;
     min-height: 12rem;
