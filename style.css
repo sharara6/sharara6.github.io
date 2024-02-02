@@ -302,6 +302,9 @@ z-index: 1;
 #projects .row .item .item-content p{
     margin-bottom: 5px;
 }
+#projects .row .item .item-content #ToDo{
+    margin-bottom: 35px;
+}
 #projects .row .item{
   background-color: aliceblue;  
   border-radius: 5px;
