@@ -226,7 +226,7 @@ z-index: 1;
 }
 #skills .skills-content .row{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     align-items: center;
     text-align: center;
 }
@@ -256,6 +256,15 @@ z-index: 1;
     font-size: 40px;
     margin-bottom: 0.5rem;
 }
+#skills .skills-content .row #docker{
+    color: white;
+    font-size: 40px;
+    margin-bottom: 0.5rem;
+}
+#skills .skills-content .row #c{
+    color: white;
+    font-size: 40px;
+}
 /* skills End */
 /* Projects start  */
 #projects{
@@ -269,7 +278,7 @@ z-index: 1;
 }
 #projects .row{
     display: grid;
-    grid-template-columns: repeat(2 , 1fr);
+    grid-template-columns: repeat(3 , 1fr);
     justify-content: center;
     align-items: center;
     gap: 2rem ;
