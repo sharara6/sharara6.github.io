@@ -409,6 +409,9 @@ footer{
 }
 /* Mobile response */
 @media(max-width:528px){
+    #home .navbar{
+        font-size: 14px;
+    }
     #home .header-content h1{
         font-size: 35px;
     }
