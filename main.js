@@ -24,3 +24,32 @@ function addAnimation() {
     });
   });
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const swiper = new Swiper(".swiper", {
+    // Swiper options
+    slidesPerView: 1,
+    spaceBetween: 5,
+    loop: true, // Loop through the slides infinitely
+    
+    autoplay: {
+      delay: 1000, // 3 seconds between transitions
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+      // Responsive breakpoints
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 10,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 0,
+      },
+    },
+  });
+  console.log(swiper);
+});

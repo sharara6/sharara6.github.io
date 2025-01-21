@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="style.css">
     <!-- Favicon -->
     <link rel="shortcut icon" href="Tab Icon/Logo.jpg" type="image/x-icon">
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 </head>
 
 <body>
@@ -134,73 +136,79 @@
         <!-- Skills End -->
          <!-- Projects Start -->
         <section id="projects">
-          <div class="container">
+          <div class="container" id = "projects-container">
             <h2>
                 <i class="fa-solid fa-laptop-code"></i> My <span class="text-primary"> Projects</span> 
             </h2>
             <hr>
-            <div class="row">
-                <!-- UNIfied Project -->
-                <div class="item">
-                    <img src="Projct's Pics/Unified1.png" alt="UNIfied">
-                    <div class="item-content">
-                        <h3>
-                            UNIfied
-                        </h3>
-                        <p>A simple university portal hub to enhance teacher and student experience.</p>
-                        <a href="https://github.com/sharara6/UNIfied"target="_blank">See Repository </a>
+            <div class="swiper">
+                <div class="row swiper-wrapper">
+                    <!-- UNIfied Project -->
+                    <div class="swiper-slide item ">
+                        <img src="Projct's Pics/Unified1.png" alt="UNIfied">
+                        <div class="item-content">
+                            <h3>
+                                UNIfied
+                            </h3>
+                            <p>A simple university portal hub to enhance teacher and student experience.</p>
+                            <a href="https://github.com/sharara6/UNIfied"target="_blank">See Repository </a>
+                        </div>
                     </div>
-                </div>
-                <!-- UNIfied 2.0 Project -->
-                <div class="item">
-                    <img src="Projct's Pics/UNIfied2.png" alt="UNIfied_2.0">
-                    <div class="item-content">
-                        <h3>
-                            UNIfied 2.0
-                        </h3>
-                        <p id="uni">An Upgraded version of UNIfied using GUI.</p>
-                        <a href="https://github.com/sharara6/UNIfied_2.0"target="_blank">See Repository </a>
+                    <!-- UNIfied 2.0 Project -->
+                    <div class="swiper-slide item">
+                        <img src="Projct's Pics/UNIfied2.png" alt="UNIfied_2.0">
+                        <div class="item-content">
+                            <h3>
+                                UNIfied 2.0
+                            </h3>
+                            <p id="uni">An Upgraded version of UNIfied using GUI.</p>
+                            <a href="https://github.com/sharara6/UNIfied_2.0"target="_blank">See Repository </a>
+                        </div>
+                        
                     </div>
-                    
-                </div>
-                <!-- claclulator Project -->
-                <div class="item">
-                    <img src="Projct's Pics/Calculator.jpeg" alt="claclulator project ">
-                    <div class="item-content">
-                        <h3>
-                           Calculator 
-                        </h3>
-                        <p id="calc">A simple calculator.</p>
-                        <a href="https://lnkd.in/dNk2AYeK"target="_blank">See Repository </a>
+                    <!-- claclulator Project -->
+                    <div class="swiper-slide item">
+                        <img src="Projct's Pics/Calculator.jpeg" alt="claclulator project ">
+                        <div class="item-content">
+                            <h3>
+                            Calculator 
+                            </h3>
+                            <p id="calc">A simple calculator.</p>
+                            <a href="https://lnkd.in/dNk2AYeK"target="_blank">See Repository </a>
+                        </div>
+                        
                     </div>
-                    
-                </div>
-                <!-- To Do Project -->
-                <div class="item">
-                    <img src="Projct's Pics/ToDo.jpeg" alt="To Do list project ">
-                    <div class="item-content">
-                        <h3>
-                            To-Do List
-                        </h3>
-                        <p id="ToDo">A To-Do list that allows users to Add, Edit and Delete tasks.</p>
-                        <a href="https://lnkd.in/dUYbHKeU"target="_blank">See Repository </a>
+                    <!-- To Do Project -->
+                    <div class="swiper-slide item">
+                        <img src="Projct's Pics/ToDo.jpeg" alt="To Do list project ">
+                        <div class="item-content">
+                            <h3>
+                                To-Do List
+                            </h3>
+                            <p id="ToDo">A To-Do list that allows users to Add, Edit and Delete tasks.</p>
+                            <a href="https://lnkd.in/dUYbHKeU"target="_blank">See Repository </a>
+                        </div>
+                        
                     </div>
-                    
-                </div>
 
-                <!-- Tech Hub Project -->
-                <div class="item">
-                    <img src="Projct's Pics/Tech-Hub.png" alt="Tech Hub project img">
-                    <div class="item-content">
-                        <h3>
-                            Tech-Hub.
-                        </h3>
-                        <p id="TechHub">An online tech store that allows users to shop and but tech related items.</p>
-                        <a href="https://github.com/nour-awad/tech-hub"target="_blank">See Repository </a>
+                    <!-- Tech Hub Project -->
+                    <div class="swiper-slide item">
+                        <img src="Projct's Pics/Tech-Hub.png" alt="Tech Hub project img">
+                        <div class="item-content">
+                            <h3>
+                                Tech-Hub.
+                            </h3>
+                            <p id="TechHub">An online tech store that allows users to shop and but tech related items.</p>
+                            <a href="https://github.com/nour-awad/tech-hub"target="_blank">See Repository </a>
+                        </div>
                     </div>
-                </div>
-                    
-                </div>
+                        
+                    </div>
+
+
+                <!-- Swiper Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
             </div>
           </div>  
         </section>
@@ -216,8 +224,8 @@
                     <form action="https://formsubmit.co/faresshohdy0@gmail.com" method="POST">
                         <input type="text" name="Name" id="Name" placeholder="Name" required>
                         <input type="email" name="Email" id="Email" placeholder="Email" required>
-                        <textarea name="Message" id="Message" cols="30" rows="10" placeholder="Message" required>
-                        </textarea>
+                        <textarea name="Message" id="Message" cols="30" rows="10" placeholder="Write your message here..." required></textarea>
+
                         <button type="submit" class="btn-primary">Submit</button>
                     </form>
                 </div>
@@ -231,4 +239,6 @@
     </footer>
      <!-- Footer End -->
      <script src="main.js"></script></body>
+     <!-- Swiper.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
 </html>
