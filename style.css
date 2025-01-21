@@ -212,21 +212,40 @@ z-index: 1;
 }
 #skills{
     color: var(--bg-primary);
+    
+}
+#skills-container{
+    background-color: var(--grid-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+    margin: auto;
 }
 #skills .row img{
     max-width: 40px;
 }
-#skills h2  ,#projects h2{
+#skills h2 {
     font-family: 'Poppins', sans-serif;
-    color: #040D12;
+    color: var(--secondary-color);
+}
+#skills h2 span {
+    color: var(--third-color);
+}
+#skills-hr{
+    background-color: var(--secondary-color)!important;
+}
+#skills-p{
+    color: rgb(240, 208, 147);
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1rem;
+    padding: 2px;
 }
 #skills .skills-content{
     margin-top: 2rem;
-    background-color: var(--grid-bg);
 }
 #skills .skills-content .row{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
     align-items: center;
     text-align: center;
 }
@@ -235,7 +254,8 @@ z-index: 1;
     margin: 20px;
     padding: 1rem;
     border-radius: 10px;
-    min-width: 10px;
+    width: 150px;
+    height: 100px;
     transition: all 0.3s ease;
 }
 #skills .skills-content .row .item:hover{
@@ -265,10 +285,59 @@ z-index: 1;
     color: white;
     font-size: 40px;
 }
+
+.scroller {
+    max-width: 1000px;
+  }
+  
+  .scroller__inner {
+    padding-block: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  
+  .scroller[data-animated="true"] {
+    overflow: hidden;
+    -webkit-mask: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  }
+  
+  .scroller[data-animated="true"] .scroller__inner {
+    width: max-content;
+    flex-wrap: nowrap;
+    animation: scroll var(--_animation-duration, 30s)
+      var(--_animation-direction, forwards) linear infinite;
+  }
+  
+  .scroller[data-direction="right"] {
+    --_animation-direction: reverse;
+  }
+  
+  .scroller[data-direction="left"] {
+    --_animation-direction: forwards;
+  }
+  
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.15rem));
+    }
+  }
+  
 /* skills End */
 /* Projects start  */
 #projects{
    background-color: var(--bg-primary); 
+}
+#projects h2{
+    font-family: 'Poppins', sans-serif;
+    color: #040D12;
 }
 #projects .row .item img{
     max-width: 100%;
