@@ -10,6 +10,7 @@ Check out the live demo of the [portfolio website](https://sharara6.github.io/).
 
 - HTML5
 - CSS3
+- JavaScript
 ## Features
 
 - Responsive design
