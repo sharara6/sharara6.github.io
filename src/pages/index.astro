@@ -1,0 +1,176 @@
+---
+import { existsSync } from 'node:fs';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import photo from '../faris.png';
+import { profile, experience, featured, otherWork, research, openSource } from '../data';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const hasCv = existsSync(`public${profile.cv}`);
+const years = (start: string, end: string) => {
+  const a = start.split(' ')[1];
+  const b = end.split(' ')[1];
+  return a === b ? a : `${a}–${b.slice(2)}`;
+};
+---
+
+<Base>
+  <main>
+    <header class="enter flex items-center gap-4" style="--i:0">
+      <Image
+        src={photo}
+        alt="Faris Sharara"
+        width={112}
+        class="size-14 rounded-full border border-line bg-line/40 object-cover object-top"
+      />
+      <div class="leading-tight">
+        <h1 class="text-xl font-medium">Faris Sharara</h1>
+        <p class="text-muted">Backend engineer</p>
+      </div>
+    </header>
+
+    <div class="mt-12 space-y-5">
+      <p class="enter" style="--i:1">
+        I'm a backend engineer from Egypt. I finished my Computer Science degree at Zewail City in 2026, and
+        most of what I build is APIs and the systems behind them, in C#, TypeScript, and Java.
+      </p>
+      <p class="enter" style="--i:2">
+        Most recently I was at Proart, where I owned the product pricing module in ASP.NET Core. I found two
+        discount bugs that were changing what customers paid, tracked down a background job that was eating
+        our Microsoft Graph quota, and wrote 190 of the repository's tests.
+      </p>
+      <p class="enter" style="--i:3">
+        I like knowing a system works before I say it does. For my graduation project,{' '}
+        <a class="u" href={`${base}/projects/in/`}>IN</a>, I load-tested the backend to 228 requests per second
+        with 500 concurrent users and no server errors.
+      </p>
+    </div>
+
+    <p class="enter mt-8 border-l-2 border-accent pl-4" style="--i:4">
+      <span class="italic">Now:</span> {profile.status}{' '}
+      <a class="u" href={`mailto:${profile.email}`}>Email me</a>.<span class="cursor" aria-hidden="true"></span>
+    </p>
+
+    <p class="enter meta mt-8 flex flex-wrap gap-x-5 gap-y-2" style="--i:5">
+      <a class="u" href={profile.links.github} target="_blank" rel="noopener">GitHub</a>
+      <a class="u" href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <a class="u" href={profile.links.leetcode} target="_blank" rel="noopener">LeetCode</a>
+      {hasCv && <a class="u" href={`${base}${profile.cv}`}>Résumé (PDF)</a>}
+    </p>
+
+    <!-- Work -->
+    <section class="enter mt-20" style="--i:6">
+      <h2 class="italic text-muted">Work</h2>
+      <ul class="mt-4 border-t border-line">
+        {experience.map((r, i) => (
+          <li class="border-b border-line">
+            <details open={i === 0}>
+              <summary class="flex items-baseline gap-3 py-3.5">
+                <span class="chev meta inline-block w-3">›</span>
+                <span class="flex-1">
+                  {r.company}
+                  <span class="text-muted"> · {r.title}</span>
+                </span>
+                <span class="meta shrink-0">{years(r.start, r.end)}</span>
+              </summary>
+              <div class="pb-6 pl-6">
+                <ul class="space-y-2.5 text-[1.0625rem] text-muted">
+                  {r.points.map((p) => <li>{p}</li>)}
+                </ul>
+                {r.stack.length > 0 && <p class="meta mt-4">{r.stack.join(', ')}</p>}
+              </div>
+            </details>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Projects -->
+    <section class="mt-16">
+      <h2 class="italic text-muted">Projects</h2>
+      <ul class="mt-4 space-y-6">
+        {featured.map((p) => (
+          <li>
+            <a href={`${base}/projects/${p.slug}/`} class="group block">
+              <span class="u inline-block group-hover:decoration-current" style={`view-transition-name: vt-${p.slug}`}>
+                {p.name}
+              </span>
+              {p.status && <span class="meta ml-2">{p.status.toLowerCase()}</span>}
+              <span class="meta ml-3 transition-opacity duration-300 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:opacity-100">
+                {p.stack.slice(0, 3).join(' · ')}
+              </span>
+              <p class="text-muted">{p.tagline}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <h3 class="mt-12 italic text-muted">Smaller things</h3>
+      <ul class="mt-3">
+        {otherWork.map((w) => (
+          <li class="flex items-baseline gap-3 py-1.5">
+            <span class="flex-1">
+              {w.href ? (
+                <a class="u" href={w.href} target="_blank" rel="noopener">{w.name}</a>
+              ) : (
+                w.name
+              )}
+              <span class="text-muted">, {/^[A-Z][a-z]/.test(w.note) ? w.note.charAt(0).toLowerCase() + w.note.slice(1) : w.note}</span>
+            </span>
+            <span class="meta shrink-0">{w.year}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Research & OSS -->
+    <section class="mt-16">
+      <h2 class="italic text-muted">Research and open source</h2>
+      <ul class="mt-4 space-y-5">
+        <li>
+          <a class="u" href={research.href} target="_blank" rel="noopener">{research.title}</a>
+          <p class="meta mt-1">{research.authors} · {research.venue}</p>
+        </li>
+        {openSource.map((o) => (
+          <li>
+            <a class="u" href={o.href} target="_blank" rel="noopener">{o.title}</a>
+            <span class="text-muted">, contributed to {o.repo.split('/')[1]}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Tools -->
+    <section class="mt-16">
+      <h2 class="italic text-muted">Tools</h2>
+      <p class="mt-4">
+        Day to day I work in C# with ASP.NET Core and EF Core, TypeScript on Node.js, and Java with Spring
+        Boot, usually on PostgreSQL and Redis, with queues like BullMQ and RabbitMQ when work needs to happen
+        later. I ship with Docker, GitHub Actions, and Azure DevOps, and I've deployed to Kubernetes and Azure.
+      </p>
+      <p class="mt-4">
+        On the client side I've built with React, .NET MAUI, Flutter, and Angular. Right now I'm going deeper
+        into systems-level C++.
+      </p>
+    </section>
+
+    <!-- Outside -->
+    <section class="mt-16">
+      <h2 class="italic text-muted">Outside work</h2>
+      <p class="mt-4">
+        I fenced for Egypt and competed nationally in modern pentathlon. At university I served as Chief Judge
+        of the Student Court and as my batch's representative. Long term, I want to grow into software
+        architecture.
+      </p>
+    </section>
+
+    <!-- Contact -->
+    <section class="mt-16">
+      <h2 class="italic text-muted">Contact</h2>
+      <p class="mt-4">
+        Email is best: <a class="u" href={`mailto:${profile.email}`}>{profile.email}</a>. I'm also on{' '}
+        <a class="u" href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn</a>.
+      </p>
+    </section>
+  </main>
+</Base>

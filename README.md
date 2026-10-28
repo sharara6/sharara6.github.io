@@ -1,21 +1,20 @@
-# My Portfolio Website
+# sharara6.github.io
 
-Welcome to the repository of my personal portfolio website! This website serves as a showcase of my projects, skills, and experiences.
+My portfolio: [sharara6.github.io](https://sharara6.github.io/).
 
-## Live Demo
+Built with [Astro](https://astro.build) and Tailwind CSS v4. It's a static site with almost no client JavaScript, and it deploys to GitHub Pages through GitHub Actions.
 
-Check out the live demo of the [portfolio website](https://sharara6.github.io/).
+## Develop
 
-## Technologies Used
+```sh
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # outputs to dist/
+```
 
-- HTML5
-- CSS3
-- JavaScript
-## Features
+## Editing content
 
-- Responsive design
-- Project showcase
-- Skills and technologies
-- Contact information
+Experience, projects, and links lives in [`src/data.ts`](src/data.ts).
+Each project in `featured` gets its own page at `/projects/<slug>/`.
 
-
+To show the résumé button, put a PDF at `public/Faris-Sharara-CV.pdf`.

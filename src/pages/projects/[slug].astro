@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import { featured, type Project } from '../../data';
+
+export function getStaticPaths() {
+  return featured.map((project, i) => ({
+    params: { slug: project.slug },
+    props: { project, next: featured[(i + 1) % featured.length] },
+  }));
+}
+
+const { project: p, next } = Astro.props as { project: Project; next: Project };
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const maxMs = p.latency ? Math.ceil(Math.max(...p.latency.map((l) => l.ms)) / 500) * 500 : 0;
+const ticks = Array.from({ length: maxMs / 500 + 1 }, (_, i) => i * 500);
+---
+
+<Base title={`${p.name} · Faris Sharara`} description={p.tagline}>
+  <main>
+    <a href={`${base}/`} class="meta u">← Faris Sharara</a>
+
+    <h1 class="mt-12 w-fit text-3xl font-medium" style={`view-transition-name: vt-${p.slug}`}>{p.name}</h1>
+    <p class="enter mt-2 text-muted" style="--i:1">{p.tagline}</p>
+    <p class="enter meta mt-4" style="--i:2">{p.year} · {p.team} · {p.role}</p>
+
+    {p.metrics && (
+      <table class="enter mt-10 w-full border-y border-line text-left" style="--i:3">
+        <tbody>
+          {p.metrics.map((m) => (
+            <tr class="border-b border-line last:border-0">
+              <td class="py-2 text-muted">{m.label}</td>
+              <td class="py-2 text-right font-mono text-[0.9375rem]">{m.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+
+    {p.latency && (
+      <figure class="chart mt-10" data-chart>
+        <figcaption class="meta">Response time at 500 concurrent users</figcaption>
+        <div class="mt-4 space-y-3">
+          {p.latency.map((l, i) => (
+            <div class="grid grid-cols-[2.5rem_1fr] items-center gap-3">
+              <span class="meta">{l.label}</span>
+              <div class="relative h-6">
+                <div
+                  class="bar absolute inset-y-0 left-0 bg-accent/80"
+                  style={`width: ${(l.ms / maxMs) * 100}%; transition-delay: ${i * 150}ms`}
+                ></div>
+                <span
+                  class="meta absolute inset-y-0 flex items-center pl-2 text-fg"
+                  style={`left: ${(l.ms / maxMs) * 100}%`}
+                >
+                  ~{l.ms.toLocaleString('en-US')} ms
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="meta mt-2 ml-[3.25rem] flex justify-between border-t border-line pt-1 text-[0.6875rem]">
+          {ticks.map((t) => <span>{t === 0 ? '0' : `${t / 1000}s`}</span>)}
+        </div>
+      </figure>
+    )}
+
+    <p class="mt-10">{p.summary}</p>
+
+    <h2 class="mt-12 italic text-muted">What I worked on</h2>
+    <ul class="mt-4 list-disc space-y-2.5 pl-5 marker:text-line">
+      {p.built.map((b) => <li>{b}</li>)}
+    </ul>
+
+    <h2 class="mt-12 italic text-muted">Built with</h2>
+    <p class="mt-4">{p.stack.join(', ')}.</p>
+
+    {p.links.length > 0 && (
+      <p class="mt-10 flex gap-5">
+        {p.links.map((l) => (
+          <a class="u" href={l.href} target="_blank" rel="noopener">{l.label} ↗</a>
+        ))}
+      </p>
+    )}
+
+    <p class="mt-16 border-t border-line pt-6 text-muted">
+      Next: <a class="u text-fg" href={`${base}/projects/${next.slug}/`}>{next.name}</a>
+    </p>
+  </main>
+</Base>
